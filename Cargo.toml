@@ -1,0 +1,15 @@
+[package]
+name = "tmstat-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.5.50", features = ["derive", "wrap_help"] }
+# clap = { version = "4.5.50", features = ["derive"] }
+color-print = "0.3.7"
+libc = "0.2.177"
+num_cpus = "1.17.0"
+palette = "0.7.6"
+
+# [features]
+# wrap_help = ["clap/wrap_help"]
