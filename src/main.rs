@@ -19,6 +19,11 @@ fn main() {
 
     let mut fmtstr = String::new();
     std::mem::swap(&mut fmtstr, &mut config.format);
+
+    if config.extras.is_none() {
+        config.extras = Some((0, !0, 0))
+    }
+
     let config = config;
 
     let cpu = fmtstr.contains("{c}") || fmtstr.contains("{gc}");

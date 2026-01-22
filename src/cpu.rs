@@ -32,6 +32,8 @@ pub fn format(fmtstr: &mut String, config: &Config) {
     let mut jiffies =
         Cache::init(config, Cpu, max_age).unwrap_or_else(|e| panic!("Couldn't access cache: {e}"));
     let (nonidlep, totalp) = jiffies.get_recent().unwrap_or((nonidlen, 1));
+
+    #[cfg(debug_assertions)]
     dbg!(nonidlep, totalp);
 
     let usage = if nonidlen == nonidlep {

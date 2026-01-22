@@ -48,7 +48,7 @@ pub const INTERFACE_LONG: &str = color_print::cstr!(
     "Show network traffic for specific interface(s). By default, all interfaces' combined traffic \
 is shown, except <bold>lo</> (loopback). A value of <bold>..</> (two U+002E's) will include \
 loopback. <bold>-iabc/def</> or <bold>-iabc</> <bold>-idef</> will show traffic for both \
-<bold>abc</> and <bold>def</>."
+<bold>abc</> and <bold>def</> combined."
 );
 
 pub const PHYSICAL_LONG: &str = "Calculation of load average gradients uses no. of logical cores \

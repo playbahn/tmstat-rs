@@ -25,7 +25,10 @@ pub struct Cache {
 
 impl Cache {
     pub fn init(config: &Config, module: CacheMod, max_age: Duration) -> std::io::Result<Self> {
-        let file_name = config.client_pid.as_ref().expect("main() ensures PID is present");
+        let file_name = config
+            .client_pid
+            .as_ref()
+            .expect("main() ensures PID is present");
         let mut path = config.cachedir.join(file_name);
         path.set_extension(match module {
             CacheMod::Cpu => "cpu",
@@ -150,9 +153,8 @@ pub fn gradient(multiplier: f64) -> String {
 }
 
 pub fn format_metric(value: f64, config: &Config) -> String {
-    let (minw, maxw, precision) = config.extras.unwrap_or((0, !0, 0));
-    dbg!(value, minw, maxw, precision);
-    let mut usage = format!("{:minw$.precision$}", value);
+    let (minw, maxw, precision) = config.extras.expect("main puts Some in extras");
+    let mut usage = format!("{value:minw$.precision$}");
 
     if usage.len() > maxw {
         if usage.find('.').is_none_or(|dot| dot > maxw) {
@@ -167,7 +169,8 @@ pub fn format_metric(value: f64, config: &Config) -> String {
         }
     }
 
-    dbg!(&usage);
+    #[cfg(debug_assertions)]
+    dbg!(value, &usage);
 
     usage
 }
